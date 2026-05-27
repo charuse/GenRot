@@ -1,0 +1,17 @@
+{
+  "Name": "GenRot",
+  "Author": "charuse",
+  "Description": "Rotate via Generator ID",
+  "InstallDependencies": ["Syati_ObjectFactories", "Syati_Init"],
+  "ModuleData" : [
+    {
+      "NameObjFactory" : [
+        {
+          "Name" : "GenRot",
+          "Function" : "createExtActor<GenRot>",
+          "Include" : "GenRot.h"
+        }
+      ]
+    }
+  ]
+}

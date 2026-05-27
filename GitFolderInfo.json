@@ -1,0 +1,7 @@
+{
+  "Version": 1,
+  "Files": [
+    "include/GenRot.h",
+    "source/GenRot.cpp"
+  ]
+}

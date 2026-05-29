@@ -12,15 +12,13 @@ bool GenRot::rotater() {
 
     while (x < grpSz) {
         LiveActor *currAct = mGroup->getActor(x);
-        currAct->mRotation.x += mRot.x;
-        currAct->mRotation.y += mRot.y;
-        currAct->mRotation.z += mRot.z;
+        currAct->mRotation += mRot;
         ++x;
     }
     
     if (x == grpSz) return true;
     else {
-        OSReport("[GenRot] Object amount inconsistent with amount rotated, failing. X: %d, GrpSz: %d\n", x, grpSz);
+        OSReport("[GR] Object amount inconsistent with amount rotated, failing. X: %d, GrpSz: %d\n", x, grpSz);
         return false;
     }
 }
@@ -40,10 +38,10 @@ void GenRot::init(const JMapInfoIter &rIter) {
         LiveActor* currActor = alag->getActor(i);
         s16 matchid = currActor->mLinkedInfo.mLinkId;
         s16 checkid = mGenID;
-        OSReport("[GenRot] Object: %s, mLinkID: %hd vs GenID: %hd\n", currActor->mName, matchid, checkid);
+        OSReport("[GR] Object: %s, mLinkID: %hd vs GenID: %hd\n", currActor->mName, matchid, checkid);
         if (matchid == checkid) {
             mGroup->registerActor(currActor);
-            OSReport("[GenRot] Added Object %d to mGroup\n", currActor->mName);
+            OSReport("[GR] Added Object %d to mGroup\n", currActor->mName);
         }
     }
 }
@@ -53,8 +51,8 @@ void GenRot::control() {
         mGo == false;
 
         rotater()
-        ? OSReport("[GenRot] Rotated %d objects with ID %hd\n", mGroup->mNumObjs, mGroup->getActor(0)->mLinkedInfo.mLinkId) 
-        , OSReport("[GenRot] Rotated by X: %d, Y: %d, Z: %d\n", mRot.x, mRot.y, mRot.z)
-        : OSReport("[GenRot] Failed Rotate or 0 objects found\n");
+        ? OSReport("[GR] Rotated %d objects with ID %hd\n", mGroup->mNumObjs, mGroup->getActor(0)->mLinkedInfo.mLinkId) 
+        , OSReport("[GR] Rotated by X: %d, Y: %d, Z: %d\n", mRot.x, mRot.y, mRot.z)
+        : OSReport("[GR] Failed Rotate or 0 objects found\n");
     }
 }

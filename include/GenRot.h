@@ -1,22 +1,22 @@
 #pragma once
 #include "syati.h"
 
+struct Rotater {
+    s32 x;
+    s32 y;
+    s32 z;
+};
+
 class GenRot : public NameObj {
 public:
     GenRot(const char *pName);
 
     virtual bool rotater();
     virtual void init(const JMapInfoIter &rIter);
-    virtual void movement();
+    virtual void control();
     
-    s32 mGenID;
     LiveActorGroup* mGroup;
     Rotater mRot;
-  
-};
-
-struct Rotater {
-    s32 x;
-    s32 y;
-    s32 z;
+    s32 mGenID;
+    bool mGo;
 };
